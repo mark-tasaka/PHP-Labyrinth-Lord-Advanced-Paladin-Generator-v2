@@ -4,6 +4,17 @@ The Labyrinth Lord Advanced Companion Paladin Character Generator Version 2 is t
 
 ----------
 
+A live version of the Labyrinth Lord Advanced Companion Paladin Character Generator Version 2 is available at:
+
+https://www.oldschooladventures.org/ll/classes2/paladin/
+
+------------
+
+
+Update 1.01: 2022-07-14
+
+Updates to paladin.php, paladin.css, classDetails.php, spells.phhp, turnUndead.php, weapons.php, and xp.php.  A link to a live version of the Labyrinth Lord Advanced Companion Paladin Character Generator Version 2 has been added.
+
 
 Initial commit: 2022-07-11
 
