@@ -1,6 +1,6 @@
 <?php
 
-/*Cleric */
+/*Paladin */
 
 function getHitPoints($level, $conMod)
 {
@@ -10,12 +10,12 @@ function getHitPoints($level, $conMod)
     {
         for($i = 0; $i < $level; ++$i)
         {
-            $levelHP = rand(3, 6);
+            $levelHP = rand(4, 8);
             $levelHP += $conMod;
     
-            if($levelHP < 3)
+            if($levelHP < 4)
             {
-                $levelHP = 3;
+                $levelHP = 4;
             }
     
             $hitPoints += $levelHP;
@@ -26,12 +26,12 @@ function getHitPoints($level, $conMod)
     {
         for($i = 0; $i < 10; ++$i)
         {
-            $levelHP = rand(3, 6);
+            $levelHP = rand(4, 8);
             $levelHP += $conMod;
     
-            if($levelHP < 3)
+            if($levelHP < 4)
             {
-                $levelHP = 3;
+                $levelHP = 4;
             }
     
             $hitPoints += $levelHP;
@@ -40,7 +40,7 @@ function getHitPoints($level, $conMod)
 
         $levelTenPlusHP = ($level - 9);
 
-        $hitPoints += $levelTenPlusHP;
+        $hitPoints += ($levelTenPlusHP * 3);
 
     }
 
@@ -49,7 +49,7 @@ function getHitPoints($level, $conMod)
 
 }
 
-//cleric d8
+//palidin d10
 function getAdvancedHitPoints($level, $conMod)
 {
     $hitPoints = 0;
@@ -58,12 +58,12 @@ function getAdvancedHitPoints($level, $conMod)
     {
         for($i = 0; $i < $level; ++$i)
         {
-            $levelHP = rand(3, 8);
+            $levelHP = rand(5, 10);
             $levelHP += $conMod;
     
-            if($levelHP < 3)
+            if($levelHP < 5)
             {
-                $levelHP = 3;
+                $levelHP = 5;
             }
     
             $hitPoints += $levelHP;
@@ -74,12 +74,12 @@ function getAdvancedHitPoints($level, $conMod)
     {
         for($i = 0; $i < 10; ++$i)
         {
-            $levelHP = rand(3, 8);
+            $levelHP = rand(5, 10);
             $levelHP += $conMod;
     
-            if($levelHP < 3)
+            if($levelHP < 5)
             {
-                $levelHP = 3;
+                $levelHP = 5;
             }
     
             $hitPoints += $levelHP;
@@ -88,7 +88,7 @@ function getAdvancedHitPoints($level, $conMod)
 
         $levelTenPlusHP = ($level - 9);
 
-        $hitPoints += $levelTenPlusHP;
+        $hitPoints += ($levelTenPlusHP * 3);
 
     }
 
@@ -100,25 +100,29 @@ function getAdvancedHitPoints($level, $conMod)
 
 function saveBreathAttack($level)
 {
-    if($level <= 4)
+    if($level <= 3)
     {
-        return 16;
+        return 15;
     }
-    else if($level >= 5 && $level <= 8)
+    else if($level >= 4 && $level <= 6)
     {
-        return 14;
+        return 13;
     }
-    else if($level >= 9 && $level <= 12)
+    else if($level >= 7 && $level <= 9)
     {
-        return 12;
+        return 9;
     }
-    else if($level >= 13 && $level <= 16)
+    else if($level >= 10 && $level <= 12)
     {
-        return 8;
+        return 7;
+    }
+    else if($level >= 13 && $level <= 15)
+    {
+        return 5;
     }
     else
     {
-        return 6;
+        return 4;
     }
 
 }
@@ -126,50 +130,63 @@ function saveBreathAttack($level)
 
 function savePoisonDeath($level)
 {
-    if($level <= 4)
+    if($level <= 3)
     {
-        return 11;
+        return 12;
     }
-    else if($level >= 5 && $level <= 8)
+    else if($level >= 4 && $level <= 6)
     {
-        return 9;
+        return 10;
     }
-    else if($level >= 9 && $level <= 12)
+    else if($level >= 7 && $level <= 9)
     {
-        return 7;
+        return 8;
     }
-    else if($level >= 13 && $level <= 16)
+    else if($level >= 10 && $level <= 12)
     {
-        return 3;
+        return 6;
+    }
+    else if($level >= 13 && $level <= 18)
+    {
+        return 4;
     }
     else
     {
-        return 2;
+        return 3;
     }
+
 }
 
 
 function savePetrify($level)
 {
-    if($level <= 4)
+    if($level <= 3)
     {
         return 14;
     }
-    else if($level >= 5 && $level <= 8)
+    else if($level >= 4 && $level <= 6)
     {
         return 12;
     }
-    else if($level >= 9 && $level <= 12)
+    else if($level >= 7 && $level <= 9)
     {
         return 10;
     }
-    else if($level >= 13 && $level <= 16)
+    else if($level >= 10 && $level <= 12)
     {
         return 8;
     }
-    else
+    else if($level >= 13 && $level <= 15)
     {
         return 6;
+    }
+    else if($level >= 16 && $level <= 18)
+    {
+        return 5;
+    }
+    else
+    {
+        return 4;
     }
 
 }
@@ -177,25 +194,33 @@ function savePetrify($level)
 
 function saveWands($level)
 {
-    if($level <= 4)
+    if($level <= 3)
     {
-        return 12;
+        return 13;
     }
-    else if($level >= 5 && $level <= 8)
+    else if($level >= 4 && $level <= 6)
     {
-        return 10;
+        return 11;
     }
-    else if($level >= 9 && $level <= 12)
+    else if($level >= 7 && $level <= 9)
     {
-        return 8;
+        return 9;
     }
-    else if($level >= 13 && $level <= 16)
+    else if($level >= 10 && $level <= 12)
+    {
+        return 7;
+    }
+    else if($level >= 13 && $level <= 15)
+    {
+        return 5;
+    }
+    else if($level >= 16 && $level <= 18)
     {
         return 4;
     }
     else
     {
-        return 4;
+        return 3;
     }
 
 }
@@ -203,54 +228,63 @@ function saveWands($level)
 
 function saveSpells($level)
 {
-    if($level <= 4)
+    if($level <= 3)
     {
-        return 15;
+        return 16;
     }
-    else if($level >= 5 && $level <= 8)
+    else if($level >= 4 && $level <= 6)
+    {
+        return 14;
+    }
+    else if($level >= 7 && $level <= 9)
     {
         return 12;
     }
-    else if($level >= 9 && $level <= 12)
+    else if($level >= 10 && $level <= 12)
     {
-        return 9;
+        return 10;
     }
-    else if($level >= 13 && $level <= 16)
+    else if($level >= 13 && $level <= 15)
+    {
+        return 8;
+    }
+    else if($level >= 16 && $level <= 18)
+    {
+        return 7;
+    }
+    else
     {
         return 6;
     }
+
+}
+
+
+function primeReq($strength, $wisdom)
+{
+    if($strength == 12)
+    {
+        return "";
+    }
+    else if( ($strength >= 13 && $strength <=15) && ($wisdom >= 13) )
+    {
+        return "+5% Experience Point Adjustment (Prime Requisite); ";
+    }
+    else if( ($strength >= 16) && ($wisdom >= 13 && $wisdom <=15) )
+    {
+        return "+5% Experience Point Adjustment (Prime Requisite); ";
+    }
+    else if( ($strength >= 16 && $strength <=18) && ($wisdom >= 16 && $wisdom <=18) )
+    {
+        return "+10% Experience Point Adjustment (Prime Requisite); ";
+    }
     else
     {
-        return 5;
+        return "";
     }
-
-}
-
-function primeReq($abilityScore)
-{
-    
-    if($abilityScore >= 3 && $abilityScore <=5)
-        {
-            return "-10% Experience Point Adjustment (Prime Requisite)<br/>";
-        }
-    else if($abilityScore >= 6 && $abilityScore <=8)
-        {
-            return "-5% Experience Point Adjustment (Prime Requisite)<br/>";
-        }
-    else if($abilityScore >= 13 && $abilityScore <=15)
-        {
-            return "+5% Experience Point Adjustment (Prime Requisite)<br/>";
-        }
-    else if($abilityScore >= 16 && $abilityScore <=18)
-        {
-            return "+10% Experience Point Adjustment (Prime Requisite)<br/>";
-        }
-    else
-        {
-            return "";
-        }
     
 }
+
 
 function secondAttack($level)
 {
@@ -485,53 +519,80 @@ function charismaModifierDescription($abilityScore)
 
 
 
+
 function getThaco($level, $abiltyMod)
 {
-    if($level == 1 || $level == 2 || $level == 3)
+    if($level == 1 || $level == 2)
     {
         $thaco = 19;
     }
-    else if($level == 4 || $level == 5)    
+    else if($level == 3)    
     {
         $thaco = 18;
     }
-    else if($level == 6 || $level == 7 || $level == 8)    
+    else if($level == 4)    
     {
         $thaco = 17;
     }
-    else if($level == 9 || $level == 10)    
+    else if($level == 5)    
     {
         $thaco = 16;
     }
-    else if($level == 11)    
+    else if($level == 6)    
     {
         $thaco = 15;
     }
-    else if($level == 12)    
+    else if($level == 7 || $level == 8)    
     {
         $thaco = 14;
     }
-    else if($level == 13 || $level == 14)    
+    else if($level == 9)    
     {
         $thaco = 13;
     }
-    else if($level == 15 || $level == 16)    
+    else if($level == 10 || $level == 11)    
     {
         $thaco = 12;
     }
-    else if($level == 17 || $level == 18)    
+    else if($level == 12)    
     {
         $thaco = 11;
     }
-    else
+    else if($level == 13)    
     {
         $thaco = 10;
+    }
+    else if($level == 14)    
+    {
+        $thaco = 9;
+    }
+    else if($level == 15)    
+    {
+        $thaco = 8;
+    }
+    else if($level == 16)    
+    {
+        $thaco = 7;
+    }
+    else if($level == 17)    
+    {
+        $thaco = 6;
+    }
+    else if($level == 18)    
+    {
+        $thaco = 5;
+    }
+    else
+    {
+        $thaco = 4;
     }
 
     $thaco -= $abiltyMod;
 
     return $thaco;
 }
+
+
 
 function getThacoCheck($score)
 {
@@ -543,56 +604,52 @@ function getThacoCheck($score)
     return $score;
 }
 
-//Cleric, Druid, Monk
+
 function startingAge($species)
 {
     $age = 0;
 
     if($species == "Human")
     {
-        $age += 18;
-        $dieRoll = rand(1, 6);
+        $age += 16;
+        $dieRoll = rand(1, 4);
         $age += $dieRoll;
     }
 
     if($species == "Dwarf")
     {
-        $age += 230;
-        $dieRoll = rand(1, 20);
-        $dieRoll2= rand(1, 20);
-        $dieRoll3 = rand(1, 20);
+        $age += 40;
+        $dieRoll = rand(1, 6);
+        $dieRoll2= rand(1, 6);
+        $dieRoll3 = rand(1, 6);
+        $dieRoll4 = rand(1, 6);
         $age += $dieRoll;
         $age += $dieRoll2;
         $age += $dieRoll3;
+        $age += $dieRoll4;
     }
 
     if($species == "Elf")
     {
-        $age += 510;
+        $age += 125;
         $dieRoll = rand(1, 8);
         $dieRoll2= rand(1, 8);
         $dieRoll3 = rand(1, 8);
         $dieRoll4 = rand(1, 8);
         $dieRoll5 = rand(1, 8);
-        $dieRoll6 = rand(1, 8);
-        $dieRoll7 = rand(1, 8);
-        $dieRoll8 = rand(1, 8);
         $age += $dieRoll;
         $age += $dieRoll2;
         $age += $dieRoll3;
         $age += $dieRoll4;
         $age += $dieRoll5;
-        $age += $dieRoll6;
-        $age += $dieRoll7;
-        $age += $dieRoll8;
     }
 
     if($species == "Gnome")
     {
-        $age += 300;
-        $dieRoll = rand(1, 10);
-        $dieRoll2= rand(1, 10);
-        $dieRoll3 = rand(1, 10);
+        $age += 60;
+        $dieRoll = rand(1, 6);
+        $dieRoll2= rand(1, 6);
+        $dieRoll3 = rand(1, 6);
         $age += $dieRoll;
         $age += $dieRoll2;
         $age += $dieRoll3;
@@ -609,24 +666,175 @@ function startingAge($species)
 
     if($species == "Half-Elf")
     {
-        $age += 30;
+        $age += 20;
         $dieRoll = rand(1, 4);
         $dieRoll2= rand(1, 4);
         $dieRoll3 = rand(1, 4);
+        $dieRoll4= rand(1, 4);
         $age += $dieRoll;
         $age += $dieRoll2;
         $age += $dieRoll3;
+        $age += $dieRoll4;
     }
 
     if($species == "Half-Orc")
     {
-        $age += 20;
+        $age += 14;
         $dieRoll = rand(1, 4);
         $age += $dieRoll;
     }
 
     return $age;
 
+}
+
+
+function paladinStrengthMin($strength)
+{
+    if($strength < 12)
+    {
+        return 12;
+    }
+    else
+    {
+        return $strength;
+    }
+}
+
+
+function paladinIntelligenceMin($intelligence)
+{
+    if($intelligence < 9)
+    {
+        return 9;
+    }
+    else
+    {
+        return $intelligence;
+    }
+}
+
+
+function paladinWisdomMin($wisdom)
+{
+    if($wisdom < 13)
+    {
+        return 13;
+    }
+    else
+    {
+        return $wisdom;
+    }
+}
+
+
+function paladinCharismaMin($charisma)
+{
+    if($charisma < 17)
+    {
+        return 17;
+    }
+    else
+    {
+        return $charisma;
+    }
+}
+
+
+function layOnHands ($level)
+{
+    $heal = 2 * ($level);
+    
+    return $heal;
+}
+
+function cureDisease ($level)
+{
+    $cure = 0;
+    
+    if($level >= 1 && $level <= 5)
+    {
+        $cure = 1;
+    }
+    else if($level >= 6 && $level <= 10)
+    {
+        $cure = 2;
+    }
+    else
+    {
+        $cure = 3;
+    }
+    
+    return $cure;
+}
+    
+    
+
+  
+function paladinSpecial ($level)
+{
+    $message = "";
+    
+    $layHands = layOnHands ($level);
+    $cureDisease = cureDisease ($level);
+    
+    if($level >= 1 && $level <= 2)
+    {
+        $message = "*May only have a maximum of (1) magical suit of armour, (1) magical shield
+        (4) magical weapons and (4) misc magical items; 
+        *Lay on Hands: once per day, can heal " . $layHands . " hp to a wounded being.<br/>
+        *Cure Disease: can cure disease up to " . $cureDisease . " time per day; 
+        *Immune to disease.<br/>
+        *Detect Evil: when concentrating, may 'Detect Evil' (as spell) up to 60'.<br/>
+        *Protect from Evil: radiates a 10' 'Protection from Evil' radius all of the time.<br/>
+        *+2 bonus to all saving throws.";
+    }
+    else if($level == 3)
+    {
+        
+        $message = "*May only have a maximum of (1) magical suit of armour, (1) magical shield
+        (4) magical weapons and (4) misc magical items; 
+        *Lay on Hands: once per day, can heal " . $layHands . " hp to a wounded being.<br/>
+        *Cure Disease: can cure disease up to " . $cureDisease . " time per day; 
+        *Immune to disease.<br/>
+        *Detect Evil: when concentrating, may 'Detect Evil' (as spell) up to 60'.<br/>
+        *Protect from Evil: radiates a 10' 'Protection from Evil' radius all of the time.<br/>
+        *+2 bonus to all saving throws; 
+        *Can turn Undead at two Cleric levels lower.";
+    }
+    else if($level >= 4 && $level <= 8)
+    {
+        
+        $message = "*May only have a maximum of (1) magical suit of armour, (1) magical shield
+        (4) magical weapons and (4) misc magical items; 
+        *Lay on Hands: once per day, can heal " . $layHands . " hp to a wounded being.<br/>
+        *Cure Disease: can cure disease up to " . $cureDisease . " time per day; 
+        *Immune to disease.<br/>
+        *Detect Evil: when concentrating, may 'Detect Evil' (as spell) up to 60'.<br/>
+        *Protect from Evil: radiates a 10' 'Protection from Evil' radius all of the time.<br/>
+        *+2 bonus to all saving throws; 
+        *Can turn Undead at two Cleric levels lower.<br/>
+        *May summon a special war horse, but only one time each 10 years. The 
+        horse has AC 5, HD 5+5, movement 180' (60').<br/>";
+    }
+    else
+    {
+        
+        $message = "*May only have a maximum of (1) magical suit of armour, (1) magical shield
+        (4) magical weapons and (4) misc magical items; 
+        *Lay on Hands: once per day, can heal " . $layHands . " hp to a wounded being.<br/>
+        *Cure Disease: can cure disease up to " . $cureDisease . " time per day; 
+        *Immune to disease.<br/>
+        *Detect Evil: when concentrating, may 'Detect Evil' (as spell) up to 60'.<br/>
+        *Protect from Evil: radiates a 10' 'Protection from Evil' radius all of the time.<br/>
+        *+2 bonus to all saving throws; 
+        *Can turn Undead at two Cleric levels lower.<br/>
+        *May summon a special war horse, but only one time each 10 years. The 
+        horse has AC 5, HD 5+5, movement 180' (60'); 
+        *Can cast clerical spells; may not use clerical spell scrolls.";
+    }
+    
+    return $message;
 }
 
 

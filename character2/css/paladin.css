@@ -624,9 +624,9 @@ body{
 #classAbilities{
     position:absolute;
     top: 1080px;
-    left: 25px;
-	font-size: 0.55em;
-    width: 620px;
+    left: 20px;
+	font-size: 0.5em;
+    width: 625px;
 }
 
 #speed{

@@ -1,6 +1,13 @@
 <?php
 
-//Cleric Turn Undead
+//Palidin Turn Undead
+
+function paladinTurnAdjustment($level)
+{
+    $level -= 2;
+
+    return $level;
+}
 
 function undeadHD1($level)
 {
@@ -20,9 +27,13 @@ function undeadHD1($level)
     {
         return "T";
     }
-    else
+    else if($level > 5)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -50,9 +61,13 @@ function undeadHD2($level)
     {
         return "T";
     }
-    else
+    else if($level > 6)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -84,9 +99,13 @@ function undeadHD3($level)
     {
         return "T";
     }
-    else
+    else if($level > 7)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -122,9 +141,13 @@ function undeadHD4($level)
     {
         return "T";
     }
-    else
+    else if($level > 8)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -161,9 +184,13 @@ function undeadHD5($level)
     {
         return "T";
     }
-    else
+    else if($level > 9)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -199,9 +226,13 @@ function undeadHD6($level)
     {
         return "T";
     }
-    else
+    else if($level > 10)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -237,9 +268,13 @@ function undeadHD7($level)
     {
         return "T";
     }
-    else
+    else if($level > 11)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }
@@ -275,9 +310,13 @@ function undeadHD8($level)
     {
         return "T";
     }
-    else
+    else if($level > 12)
     {
         return "D";
+    }
+    else
+    {
+        return "-";
     }
 
 }

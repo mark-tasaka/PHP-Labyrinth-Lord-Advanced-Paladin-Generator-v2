@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Advanced Labyrinth Lord Cleric Character Generator Version 2</title>
+<title>Advanced Labyrinth Lord Paladin Character Generator Version 2</title>
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
 	<meta charset="UTF-8">
-	<meta name="description" content="Labyrinth Lord Advance Companion Cleric Character Generator..">
+	<meta name="description" content="Labyrinth Lord Advance Companion Paladin Character Generator..">
 	<meta name="keywords" content="Labyrinth Lord Advance Companion,,HTML5,CSS,JavaScript">
 	<meta name="author" content="Mark Tasaka 2022">
     
     <link rel="icon" href="../../../../images/favicon/icon.png" type="image/png" sizes="16x16"> 
 		
 
-	<link rel="stylesheet" type="text/css" href="css/cleric.css">
+	<link rel="stylesheet" type="text/css" href="css/paladin.css">
     
     
     
@@ -124,6 +124,8 @@
             $species = $_POST["theSpecies"];
     
         }
+
+        $species = "Human";
     
         if(isset($_POST["theLevel"]))
         {
@@ -188,6 +190,7 @@
                 $strengthString = $_POST["theStrength"];
                 $strength = intval($strengthString);
                 $strength = demiHumanStrengthRange($strength, $species);
+                $strength = paladinStrengthMin($strength);
             }      
 
             if(isset($_POST["theDexterity"]))
@@ -209,6 +212,7 @@
                 $intelligenceString = $_POST["theIntelligence"];
                 $intelligence = intval($intelligenceString);
                 $intelligence = demiHumanIntelligenceRange($intelligence, $species);
+                $intelligence = paladinIntelligenceMin($intelligence);
             }  
 
             if(isset($_POST["theWisdom"]))
@@ -216,6 +220,7 @@
                 $wisdomString = $_POST["theWisdom"];
                 $wisdom = intval($wisdomString);
                 $wisdom = demiHumanWisdomRange($wisdom, $species);
+                $wisdom = paladinWisdomMin($wisdom);
             }  
 
             if(isset($_POST["theCharisma"]))
@@ -223,6 +228,7 @@
                 $charismaString = $_POST["theCharisma"];
                 $charisma = intval($charismaString);
                 $charisma = demiHumanCharismaRange($charisma, $species);
+                $charisma = paladinCharismaMin($charisma);
             }  
 
             $generationMessage = "Custom Ability Scores;";
@@ -248,16 +254,20 @@
     
             $strength = $abilityScoreArray[0];
             $strength = demiHumanStrengthRange($strength, $species);
+            $strength = paladinStrengthMin($strength);
             $dexterity = $abilityScoreArray[1];
             $dexterity = demiHumanDexterityRange($dexterity, $species);
             $constitution = $abilityScoreArray[2];
             $constitution = demiHumanConstitutionRange($constitution, $species);
             $intelligence = $abilityScoreArray[3];
             $intelligence = demiHumanIntelligenceRange($intelligence, $species);
+            $intelligence = paladinIntelligenceMin($intelligence);
             $wisdom = $abilityScoreArray[4];
             $wisdom = demiHumanWisdomRange($wisdom, $species);
+            $wisdom = paladinWisdomMin($wisdom);
             $charisma = $abilityScoreArray[5];
             $charisma = demiHumanCharismaRange($charisma, $species);
+            $charisma = paladinCharismaMin($charisma);
             
             
             $generationMessage = generationMesssage ($abilityScoreGen);
@@ -321,13 +331,13 @@
        if(isset($_POST['theAdvancedHD']) && $_POST['theAdvancedHD'] == 1) 
        {
            $hitPoints = getAdvancedHitPoints($level, $constitutionMod);   
-           $hdMessage = "HD: d8 (Adv HD)";
+           $hdMessage = "HD: d10 (Adv HD)";
        }
        else
        {
             //Hit Points
             $hitPoints = getHitPoints($level, $constitutionMod);
-            $hdMessage = "HD: d6";
+            $hdMessage = "HD: d8";
         }
        
 
@@ -491,11 +501,10 @@
         $saveSpells -= $wisdomMod;
         $saveSpells -= $saveSpellsMod;
 
-        $primeReq = primeReq($wisdom);
+        $primeReq = primeReq($strength, $wisdom);
         $resSurvival = survivalResurrection($constitution);
         $shockSurvival = survivalShock($constitution);
-        $wisdomBonusSpells = wisdomBonusCleric($wisdom);
-        $demiHumanTraits = demiHumanTraits($species);
+        $paladinSpecial = paladinSpecial($level);
 
         $strengthDescription = strengthModifierDescription($strength);
         $dexterityDescription = dexterityModifierDescription($dexterity);
@@ -546,33 +555,24 @@
         $missileHitAC9 = $missileHitAC0  - 9;
         $missileHitAC9 = getThacoCheck($missileHitAC9);
 
-        $level1BonusSpells = addSpellsLevel1($wisdom);
-        $level2BonusSpells = addSpellsLevel2($level, $wisdom);
-        $level3BonusSpells = addSpellsLevel3($level, $wisdom);
-        $level4BonusSpells = addSpellsLevel4($level, $wisdom);
     
         $level1Spells = spellsLevel1($level);
-        $level1Spells += $level1BonusSpells;
         $level2Spells = spellsLevel2($level);
-        $level2Spells += $level2BonusSpells;
         $level3Spells = spellsLevel3($level);
-        $level3Spells += $level3BonusSpells;
         $level4Spells = spellsLevel4($level);
-        $level4Spells += $level4BonusSpells;
-        $level5Spells = spellsLevel5($level);
-        $level6Spells = spellsLevel6($level);
-        $level7Spells = spellsLevel7($level);
 
-        $turnUndeadHD1 = undeadHD1($level);
-        $turnUndeadHD2 = undeadHD2($level);
-        $turnUndeadHD3 = undeadHD3($level);
-        $turnUndeadHD4 = undeadHD4($level);
-        $turnUndeadHD5 = undeadHD5($level);
-        $turnUndeadHD6 = undeadHD6($level);
-        $turnUndeadHD7 = undeadHD7($level);
-        $turnUndeadHD8 = undeadHD8($level);
-        $turnUndeadHD9 = undeadHD9($level);
-        $turnUndeadHD10 = undeadHD10($level);
+        $paladinTurnAdjust = paladinTurnAdjustment($level);
+
+        $turnUndeadHD1 = undeadHD1($paladinTurnAdjust);
+        $turnUndeadHD2 = undeadHD2($paladinTurnAdjust);
+        $turnUndeadHD3 = undeadHD3($paladinTurnAdjust);
+        $turnUndeadHD4 = undeadHD4($paladinTurnAdjust);
+        $turnUndeadHD5 = undeadHD5($paladinTurnAdjust);
+        $turnUndeadHD6 = undeadHD6($paladinTurnAdjust);
+        $turnUndeadHD7 = undeadHD7($paladinTurnAdjust);
+        $turnUndeadHD8 = undeadHD8($paladinTurnAdjust);
+        $turnUndeadHD9 = undeadHD9($paladinTurnAdjust);
+        $turnUndeadHD10 = undeadHD10($paladinTurnAdjust);
     
     ?>
 
@@ -829,7 +829,7 @@
        
        
        
-       <span id="class">Cleric</span>
+       <span id="class">Paladin</span>
        
        <span id="armourClass">
            <?php
@@ -1156,8 +1156,8 @@
         <span id="classAbilities">
             <?php
                 echo $primeReq;
-                echo "Survive Resurrection " . $resSurvival . "%; Survive Transformative Shock " . $shockSurvival . "%<br/>" . $wisdomBonusSpells . "<br/>"; 
-                echo $demiHumanTraits;
+                echo "Survive Resurrection " . $resSurvival . "%; Survive Transformative Shock " . $shockSurvival . "%<br/>"; 
+                echo $paladinSpecial;
             ?>
         </span>
 
@@ -1186,25 +1186,6 @@
                 echo $level4Spells;
             ?>
         </span>
-        
-        <span id="level5Spells">
-            <?php
-                echo $level5Spells;
-            ?>
-        </span>
-        
-        <span id="level6Spells">
-            <?php
-                echo $level6Spells;
-            ?>
-        </span>
-        
-        <span id="level7Spells">
-            <?php
-                echo $level7Spells;
-            ?>
-        </span>
-        
         
         <span id="turnUndeadHD1">
             <?php
@@ -1282,7 +1263,7 @@
       
 
   
-       let imgData = "images/cleric.png";
+       let imgData = "images/paladin.png";
       
         $("#character_sheet").attr("src", imgData);
       
